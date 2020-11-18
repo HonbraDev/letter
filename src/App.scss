@@ -1,3 +1,36 @@
-html {
-  // background-color: #eeeeee;
+@import "~bulma";
+@import "~quill/dist/quill.snow.css";
+
+body {
+  margin-top: 52px;
+}
+
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(15px);
+  width: 100%;
+}
+
+#editor {
+  width: calc(100% - 40px);
+  max-width: 1000px;
+  margin: 20px auto;
+  border: none;
+  @extend .content;
+  font-size: 1.25rem;
+}
+
+#toolbar {
+  border: none;
+  display: flex;
+  align-items: center;
+  .ql-picker-options {
+    @extend .card;
+    position: absolute;
+    max-width: none;
+    border: none;
+  }
 }
