@@ -2,9 +2,11 @@
 @import "~quill/dist/quill.snow.css";
 
 @mixin frostedGlass() {
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(15px);
+  backdrop-filter: saturate(180%) blur(20px);
+  background-color: rgba(255, 255, 255, 0.72);
 }
+
+$hairline: rgb(29, 29, 31);
 
 body {
   margin-top: 62px;
@@ -16,7 +18,7 @@ body {
   left: 0;
   @include frostedGlass();
   width: 100%;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 0px solid $hairline;
   #toolbar {
     border: none;
     display: flex;
@@ -41,16 +43,15 @@ body {
 
 #folders {
   position: fixed;
-  top: 52px;
+  top: 50px;
   left: 0;
   transform: translateX(-100%) translateX(20px);
-  height: calc(100% - 52px);
+  height: calc(100% - 50px);
   width: 400px;
   transition: transform 0.3s, border-right 0.3s, opacity 0.3s;
   padding: 20px;
   @include frostedGlass();
   z-index: 2;
-  border-radius: 0.25rem;
   opacity: 0;
   &.open {
     transform: none;
