@@ -1,24 +1,31 @@
 @import "~bulma";
 @import "~quill/dist/quill.snow.css";
 
-@mixin frostedGlass() {
-  backdrop-filter: saturate(180%) blur(20px);
-  background-color: rgba(255, 255, 255, 0.72);
+@mixin shadowCard() {
+  // box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+  // 0 0px 0 1px rgba(10, 10, 10, 0.02);
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
-$hairline: rgb(29, 29, 31);
+$hairline: rgba(29, 29, 31, 0.1);
 
 body {
-  margin-top: 62px;
+  margin-top: 72px;
 }
 
 #navbar {
   position: fixed;
   top: 0;
   left: 0;
-  @include frostedGlass();
+  @include shadowCard();
   width: 100%;
   border-bottom: 0px solid $hairline;
+  transition: background-color 0.3s, border-color 0.3s;
+  border-bottom: 1px solid transparent;
+  &.noTransparent {
+    background-color: white;
+    border-color: #eeeeeeee;
+  }
   #toolbar {
     border: none;
     display: flex;
@@ -39,6 +46,7 @@ body {
   border: none;
   @extend .content;
   font-size: 1.25rem;
+  margin-bottom: 100vh;
 }
 
 #folders {
@@ -50,9 +58,15 @@ body {
   width: 400px;
   transition: transform 0.3s, border-right 0.3s, opacity 0.3s;
   padding: 20px;
-  @include frostedGlass();
+  background-color: white;
   z-index: 2;
   opacity: 0;
+  .folder {
+    width: 100%;
+    margin: 5px;
+    text-align: left;
+    justify-content: left;
+  }
   &.open {
     transform: none;
     opacity: 1;

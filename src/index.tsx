@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Quill from "quill";
+import { setupQuill } from "./functions/editor";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,20 +12,7 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-const editor = new Quill("#editor", {
-  theme: "snow",
-  modules: {
-    toolbar: {
-      container: "#toolbar",
-    },
-  },
-});
-
-console.log(editor);
-
-fetch("/lipsum.json")
-  .then((res) => res.json())
-  .then((res) => editor.setContents(res));
+setupQuill();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
