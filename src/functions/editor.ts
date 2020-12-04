@@ -1,5 +1,7 @@
 import Quill from "quill";
 
+let lastHandle: any;
+
 function getQuill() {
   return (window as any).quillEditor;
 }
@@ -19,10 +21,15 @@ function loadDocument(doc: any) {
   getQuill().setContents(doc);
 }
 
+async function openFilePicker() {
+  const [fileHandle] = await (window as any).showOpenFilePicker();
+  lastHandle = fileHandle;
+}
+
 async function openFile() {
   try {
-    const [fileHandle] = await (window as any).showOpenFilePicker();
-    const file = await fileHandle.getFile();
+    await openFilePicker();
+    const file = await lastHandle.getFile();
     const contents = await file.text();
     loadDocument(JSON.parse(contents));
   } catch (e) {
@@ -30,4 +37,12 @@ async function openFile() {
   }
 }
 
-export { getQuill, setupQuill, loadDocument, openFile };
+async function saveFile() {
+  if (lastHandle) {
+    const writable = await lastHandle.createWritable();
+    await writable.write(JSON.stringify(getQuill().getContents()));
+    await writable.close();
+  }
+}
+
+export { getQuill, setupQuill, loadDocument, openFile, saveFile };

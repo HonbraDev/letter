@@ -20,11 +20,13 @@ body {
   @include shadowCard();
   width: 100%;
   border-bottom: 0px solid $hairline;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition: background-color 0.3s, border-color 0.3s, backdrop-filter 0.3s;
   border-bottom: 1px solid transparent;
+  backdrop-filter: blur(0.25rem);
   &.noTransparent {
     background-color: white;
-    border-color: #eeeeeeee;
+  backdrop-filter: blur(0);
+  border-color: #eeeeeeee;
   }
   #toolbar {
     border: none;
@@ -47,6 +49,14 @@ body {
   @extend .content;
   font-size: 1.25rem;
   margin-bottom: 100vh;
+  transition: filter 0.3s;
+  &.foldersOpen {
+    filter: blur(0.25rem);
+    cursor: default;
+    * {
+      cursor: default;
+    }
+  }
 }
 
 #folders {
@@ -66,6 +76,13 @@ body {
     margin: 5px;
     text-align: left;
     justify-content: left;
+    &.add {
+      justify-content: center;
+      text-align: center;
+      font-size: 2rem;
+      padding: 0;
+      height: 1.5em;
+    }
   }
   &.open {
     transform: none;

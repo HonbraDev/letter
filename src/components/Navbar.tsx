@@ -1,15 +1,21 @@
-import React, { useState } from "react";
-import { ListUl, FileEarmarkText } from "react-bootstrap-icons";
+import React from "react";
+import {
+  ListUl,
+  ArrowLeft,
+  InfoCircle,
+  Upload,
+  Download,
+} from "react-bootstrap-icons";
 import Toolbar from "./Toolbar";
-import { openFile } from "../functions/editor";
+import { openFile, saveFile } from "../functions/editor";
+import Folders from "./Folders";
 
-function Navbar() {
-  const [foldersOpen, setFoldersOpen] = useState(false);
+function Navbar(props: any) {
   return (
     <React.Fragment>
       <nav
         className={(() => {
-          switch (foldersOpen) {
+          switch (props.foldersOpen) {
             case true:
               return "navbar noTransparent";
             case false:
@@ -25,9 +31,12 @@ function Navbar() {
             <div className="navbar-item">
               <button
                 className="button is-white"
-                onClick={() => setFoldersOpen(!foldersOpen)}
+                onClick={() => props.setFoldersOpen(!props.foldersOpen)}
               >
-                <ListUl />
+                {props.foldersOpen ? <ArrowLeft /> : <ListUl />}
+              </button>
+              <button className="button is-white">
+                <InfoCircle />
               </button>
             </div>
           </div>
@@ -39,47 +48,16 @@ function Navbar() {
           <div className="navbar-end">
             <div className="navbar-item">
               <button className="button is-white" onClick={openFile}>
-                <FileEarmarkText />
+                <Upload />
+              </button>
+              <button className="button is-white" onClick={saveFile}>
+                <Download />
               </button>
             </div>
           </div>
         </div>
       </nav>
-      <nav id="folders" className={"" + (foldersOpen ? "open" : "")}>
-        <p className="content mt-2">
-          <h1>Folders</h1>
-        </p>
-        <div className="columns">
-          <div className="column">
-            {(() => {
-              let i = 0;
-              return ["Folder", "Folder", "Folder", "Folder", "Folder"].map(
-                (elem) => {
-                  i++;
-                  return (
-                    <button className="button is-white folder" key={i}>
-                      {elem}
-                    </button>
-                  );
-                }
-              );
-            })()}
-          </div>
-          <div className="column">
-            {(() => {
-              let i = 0;
-              return ["Page", "Page", "Page", "Page", "Page"].map((elem) => {
-                i++;
-                return (
-                  <button className="button is-white folder" key={i}>
-                    {elem}
-                  </button>
-                );
-              });
-            })()}
-          </div>
-        </div>
-      </nav>
+      <Folders open={props.foldersOpen} />
     </React.Fragment>
   );
 }
