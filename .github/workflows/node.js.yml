@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-          - run: git config user.email "letterbuildbot@honbra.com"
+      - run: git config user.email "letterbuildbot@honbra.com"
       - run: git config  user.name "Letter Build Bot"
       - run: npm install
       - run: npm run deploy
