@@ -23,10 +23,24 @@ body {
   transition: background-color 0.3s, border-color 0.3s, backdrop-filter 0.3s;
   border-bottom: 1px solid transparent;
   backdrop-filter: blur(0.25rem);
+  display: flex;
+  align-items: center;
   &.noTransparent {
     background-color: white;
   backdrop-filter: blur(0);
   border-color: #eeeeeeee;
+  }
+  .button {
+    @extend .is-white;
+  }
+  .center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .left, .right {
+    display: flex;
+    padding: 10px;
   }
   #toolbar {
     border: none;
@@ -61,7 +75,7 @@ body {
 
 #folders {
   position: fixed;
-  top: 50px;
+  top: 61px;
   left: 0;
   transform: translateX(-100%) translateX(20px);
   height: calc(100% - 50px);

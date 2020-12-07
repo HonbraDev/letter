@@ -26,36 +26,32 @@ function Navbar(props: any) {
         aria-label="app controls"
         id="navbar"
       >
-        <div className="navbar-menu">
-          <div className="navbar-start">
-            <div className="navbar-item">
-              <button
-                className="button is-white"
-                onClick={() => props.setFoldersOpen(!props.foldersOpen)}
-              >
-                {props.foldersOpen ? <ArrowLeft /> : <ListUl />}
-              </button>
-              <button className="button is-white">
-                <InfoCircle />
-              </button>
-            </div>
-          </div>
 
-          <div className="navbar-brand" id="toolbar">
-            <Toolbar />
-          </div>
-
-          <div className="navbar-end">
-            <div className="navbar-item">
-              <button className="button is-white" onClick={openFile}>
-                <Upload />
-              </button>
-              <button className="button is-white" onClick={saveFile}>
-                <Download />
-              </button>
-            </div>
-          </div>
+        <div className="left">
+          <button
+            className="button"
+            onClick={() => props.setFoldersOpen(!props.foldersOpen)}
+          >
+            {props.foldersOpen ? <ArrowLeft /> : <ListUl />}
+          </button>
+          <button className="button">
+            <InfoCircle />
+          </button>
         </div>
+
+        <div className="center" id="toolbar">
+          <Toolbar />
+        </div>
+
+        <div className="right">
+          <button className="button" onClick={openFile}>
+            <Upload />
+          </button>
+          <button className="button" onClick={saveFile}>
+            <Download />
+          </button>
+        </div>
+
       </nav>
       <Folders open={props.foldersOpen} />
     </React.Fragment>
