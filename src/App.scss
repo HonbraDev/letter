@@ -1,12 +1,6 @@
 @import "~bulma";
 @import "~quill/dist/quill.snow.css";
 
-@mixin shadowCard() {
-  // box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
-  // 0 0px 0 1px rgba(10, 10, 10, 0.02);
-  background-color: rgba(255, 255, 255, 0.95);
-}
-
 $hairline: rgba(29, 29, 31, 0.1);
 
 body {
@@ -17,40 +11,39 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  @include shadowCard();
   width: 100%;
-  border-bottom: 0px solid $hairline;
-  transition: background-color 0.3s, border-color 0.3s, backdrop-filter 0.3s;
-  border-bottom: 1px solid transparent;
-  backdrop-filter: blur(0.25rem);
   display: flex;
   align-items: center;
-  &.noTransparent {
-    background-color: white;
-  backdrop-filter: blur(0);
-  border-color: #eeeeeeee;
-  }
-  .button {
-    @extend .is-white;
-  }
-  .center {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  .left, .right {
-    display: flex;
-    padding: 10px;
-  }
-  #toolbar {
-    border: none;
+  justify-content: center;
+  background-color: transparent;
+  .inner {
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+      0 0px 0 1px rgba(10, 10, 10, 0.02);
+      background-color: white;
     display: flex;
     align-items: center;
-    .ql-picker-options {
-      @extend .card;
-      position: absolute;
-      max-width: none;
+    justify-content: center;
+    margin: 1rem;
+    .button {
+      @extend .is-light;
+      margin: 0.3rem;
+    }
+    .left,
+    .right {
+      display: flex;
+      padding: 0.5rem;
+    }
+    #toolbar {
       border: none;
+      display: flex;
+      align-items: center;
+      .ql-picker-options {
+        @extend .card;
+        position: absolute;
+        max-width: none;
+        border: none;
+      }
     }
   }
 }
@@ -62,6 +55,7 @@ body {
   border: none;
   @extend .content;
   font-size: 1.25rem;
+  margin-top: 100px;
   margin-bottom: 100vh;
   transition: filter 0.3s;
   &.foldersOpen {
