@@ -3,6 +3,15 @@
 
 $hairline: rgba(29, 29, 31, 0.1);
 
+@mixin bgBlur() {
+  backdrop-filter: saturate(180%) blur(20px);
+  background-color: rgba(255, 255, 255, 0.72);
+}
+
+@mixin shadow() {
+  box-shadow: rgba(109, 117, 141, 0.2) 0px 12px 48px 0px;
+}
+
 body {
   margin-top: 72px;
 }
@@ -15,35 +24,29 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
-  .inner {
-    border-radius: 0.25rem;
-    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
-      0 0px 0 1px rgba(10, 10, 10, 0.02);
-      background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  @include bgBlur();
+  .button {
+    @extend .is-white;
+    margin: 0.1rem;
+  }
+  .left,
+  .right {
+    display: flex;
+    padding: 0.5rem;
+  }
+  .logo {
+    filter: drop-shadow(0 0 12px rgba(109, 117, 141, 0.2));
+  }
+  #toolbar {
+    border: none;
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin: 1rem;
-    .button {
-      @extend .is-light;
-      margin: 0.3rem;
-    }
-    .left,
-    .right {
-      display: flex;
-      padding: 0.5rem;
-    }
-    #toolbar {
+    .ql-picker-options {
+      @extend .card;
+      position: absolute;
+      max-width: none;
       border: none;
-      display: flex;
-      align-items: center;
-      .ql-picker-options {
-        @extend .card;
-        position: absolute;
-        max-width: none;
-        border: none;
-      }
     }
   }
 }
@@ -97,4 +100,10 @@ body {
     opacity: 1;
     border-right: 1px solid #eeeeee;
   }
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }

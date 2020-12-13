@@ -1,16 +1,12 @@
-import React from "react";
-import {
-  ListUl,
-  ArrowLeft,
-  InfoCircle,
-  Upload,
-  Download,
-} from "react-bootstrap-icons";
+import React, { useState } from "react";
+import { Upload, Download } from "react-bootstrap-icons";
 import Toolbar from "./Toolbar";
 import { openFile, saveFile } from "../functions/editor";
 import Folders from "./Folders";
+import letterLogo from "../logo.png";
 
 function Navbar(props: any) {
+  const [isLetterMenuOpen, setLetterMenuOpen] = useState(false);
   return (
     <React.Fragment>
       <nav
@@ -26,30 +22,54 @@ function Navbar(props: any) {
         aria-label="app controls"
         id="navbar"
       >
-        <div className="inner">
-          <div className="left">
-            <button
-              className="button"
-              onClick={() => props.setFoldersOpen(!props.foldersOpen)}
-            >
-              {props.foldersOpen ? <ArrowLeft /> : <ListUl />}
-            </button>
-            <button className="button">
-              <InfoCircle />
-            </button>
-          </div>
-          <div className="center" id="toolbar">
-            <Toolbar />
-          </div>
-          <div className="right">
-            <button className="button" onClick={openFile}>
-              <Upload />
-            </button>
-            <button className="button" onClick={saveFile}>
-              <Download />
-            </button>
+        <div className="left">
+          <div className={isLetterMenuOpen ? "dropdown is-active" : "dropdown"}>
+            <div className="dropdown-trigger">
+              <button
+                className="button"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu"
+                onClick={() => {
+                  setLetterMenuOpen(!isLetterMenuOpen);
+                }}
+              >
+                <span className="icon">
+                  <img
+                    src={letterLogo}
+                    alt="Letter icon"
+                    className="logo"
+                  ></img>
+                </span>
+              </button>
+            </div>
+            <div className="dropdown-menu" id="dropdown-menu" role="menu">
+              <div className="dropdown-content">
+                <button
+                  className="dropdown-item"
+                  onClick={() => {
+                    setLetterMenuOpen(false);
+                    openFile();
+                  }}
+                >
+                  Open
+                </button>
+                <button
+                  className="dropdown-item"
+                  onClick={() => {
+                    setLetterMenuOpen(false);
+                    saveFile();
+                  }}
+                >
+                  Save
+                </button>
+              </div>
+            </div>
           </div>
         </div>
+        <div className="center" id="toolbar">
+          <Toolbar />
+        </div>
+        <div className="right"></div>
       </nav>
       <Folders open={props.foldersOpen} />
     </React.Fragment>
