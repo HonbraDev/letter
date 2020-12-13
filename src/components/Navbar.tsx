@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Upload, Download } from "react-bootstrap-icons";
 import Toolbar from "./Toolbar";
 import { openFile, saveFile } from "../functions/editor";
 import Folders from "./Folders";
@@ -23,7 +22,10 @@ function Navbar(props: any) {
         id="navbar"
       >
         <div className="left">
-          <div className={isLetterMenuOpen ? "dropdown is-active" : "dropdown"}>
+          <div
+            className={isLetterMenuOpen ? "dropdown is-active" : "dropdown"}
+            onBlur={() => setTimeout(() => setLetterMenuOpen(false), 500)}
+          >
             <div className="dropdown-trigger">
               <button
                 className="button"
