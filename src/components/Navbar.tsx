@@ -1,79 +1,47 @@
-import React, { useState } from "react";
-import Toolbar from "./Toolbar";
-import { openFile, saveFile } from "../functions/editor";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+// import { openFile, saveFile } from "../functions/editor";
+import QuillToolbar from "./Toolbar";
 import Folders from "./Folders";
-import letterLogo from "../logo.png";
+import { AppBar, Toolbar, IconButton } from "@material-ui/core";
+import {
+  FormatListBulletedOutlined,
+  SettingsOutlined,
+} from "@material-ui/icons";
 
-function Navbar(props: any) {
-  const [isLetterMenuOpen, setLetterMenuOpen] = useState(false);
+const useStyles = makeStyles({
+  appbar: {
+    width: "100%",
+    position: "fixed",
+    top: 0,
+    left: 0,
+    backgroundColor: "white",
+  },
+});
+
+function Navbar(props: {
+  foldersOpen: boolean;
+  setFoldersOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const classes = useStyles();
   return (
     <React.Fragment>
-      <nav
-        className={(() => {
-          switch (props.foldersOpen) {
-            case true:
-              return "navbar noTransparent";
-            case false:
-              return "navbar";
-          }
-        })()}
-        role="navigation"
-        aria-label="app controls"
-        id="navbar"
-      >
-        <div className="left">
-          <div
-            className={isLetterMenuOpen ? "dropdown is-active" : "dropdown"}
-            onBlur={() => setTimeout(() => setLetterMenuOpen(false), 500)}
+      <AppBar position="static" color="transparent" className={classes.appbar}>
+        <Toolbar>
+          <IconButton
+            edge="start"
+            color="inherit"
+            onClick={() => props.setFoldersOpen(!props.foldersOpen)}
           >
-            <div className="dropdown-trigger">
-              <button
-                className="button"
-                aria-haspopup="true"
-                aria-controls="dropdown-menu"
-                onClick={() => {
-                  setLetterMenuOpen(!isLetterMenuOpen);
-                }}
-              >
-                <span className="icon">
-                  <img
-                    src={letterLogo}
-                    alt="Letter icon"
-                    className="logo"
-                  ></img>
-                </span>
-              </button>
-            </div>
-            <div className="dropdown-menu" id="dropdown-menu" role="menu">
-              <div className="dropdown-content">
-                <button
-                  className="dropdown-item"
-                  onClick={() => {
-                    setLetterMenuOpen(false);
-                    openFile();
-                  }}
-                >
-                  Open
-                </button>
-                <button
-                  className="dropdown-item"
-                  onClick={() => {
-                    setLetterMenuOpen(false);
-                    saveFile();
-                  }}
-                >
-                  Save
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="center" id="toolbar">
-          <Toolbar />
-        </div>
-        <div className="right"></div>
-      </nav>
-      <Folders open={props.foldersOpen} />
+            <FormatListBulletedOutlined />
+          </IconButton>
+          <QuillToolbar />
+          <IconButton edge="end" color="inherit">
+            <SettingsOutlined />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <Folders open={props.foldersOpen} setOpen={props.setFoldersOpen} />
     </React.Fragment>
   );
 }

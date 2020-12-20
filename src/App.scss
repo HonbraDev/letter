@@ -13,7 +13,7 @@ $hairline: rgba(29, 29, 31, 0.1);
 }
 
 body {
-  margin-top: 72px;
+  margin-top: 64px;
 }
 
 #navbar {
@@ -102,8 +102,6 @@ body {
   }
 }
 
-.dropdown-menu button {
-  background: none;
-  border: none;
-  cursor: pointer;
+.ql-container {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
 }
