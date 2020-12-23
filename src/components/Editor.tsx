@@ -1,21 +1,17 @@
 import React from "react";
+import ReactQuill from "react-quill";
 
 function Editor(props: {
-  foldersOpen: boolean;
-  setFoldersOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  value: any;
+  setValue: React.Dispatch<React.SetStateAction<any>>;
 }) {
   return (
-    <div
+    <ReactQuill
+      value={props.value}
+      onChange={props.setValue}
+      theme=""
       id="editor"
-      className="content ql-container ql-snow "
-    >
-      <h1>
-        Welcome to Letter!
-      </h1>
-      <p>
-        To start, click here and start typing!
-      </p>
-    </div>
+    />
   );
 }
 
