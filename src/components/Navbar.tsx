@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-// import { openFile, saveFile } from "../functions/editor";
 import QuillToolbar from "./Toolbar";
 import Folders from "./Folders";
 import {
@@ -9,10 +8,8 @@ import {
   IconButton,
   useScrollTrigger,
 } from "@material-ui/core";
-import {
-  FormatListBulletedOutlined,
-  SettingsOutlined,
-} from "@material-ui/icons";
+import { FormatListBulletedOutlined } from "@material-ui/icons";
+import FileMenu from "./FileMenu";
 
 const useStyles = makeStyles({
   appbar: {
@@ -27,9 +24,13 @@ const useStyles = makeStyles({
   },
 });
 
-function Navbar() {
+function Navbar(props: {
+  value: any;
+  setValue: React.Dispatch<React.SetStateAction<any>>;
+}) {
   const classes = useStyles();
   const [foldersOpen, setFoldersOpen] = useState(false);
+  const [fileMenuOpen, setFileMenuOpen] = useState(false);
   const trigger = useScrollTrigger({
     target: window,
     disableHysteresis: true,
@@ -39,7 +40,7 @@ function Navbar() {
   useEffect(() => {}, []);
 
   return (
-    <React.Fragment>
+    <>
       <AppBar
         position="static"
         color="transparent"
@@ -47,21 +48,12 @@ function Navbar() {
         elevation={trigger ? 4 : 0}
       >
         <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            onClick={() => setFoldersOpen(!foldersOpen)}
-          >
-            <FormatListBulletedOutlined />
-          </IconButton>
+          <Folders value={props.value} setValue={props.setValue} />
           <QuillToolbar />
-          <IconButton edge="end" color="inherit">
-            <SettingsOutlined />
-          </IconButton>
+          <FileMenu value={props.value} setValue={props.setValue} />
         </Toolbar>
       </AppBar>
-      <Folders open={foldersOpen} setOpen={setFoldersOpen} />
-    </React.Fragment>
+    </>
   );
 }
 

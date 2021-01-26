@@ -7,10 +7,13 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  IconButton,
   Collapse,
+  Typography,
 } from "@material-ui/core";
 import {
   ExpandLess,
+  FormatListBulletedOutlined,
   ExpandMore,
   FolderOutlined,
   DescriptionOutlined,
@@ -25,25 +28,42 @@ const useStyles = makeStyles({
   file: {
     paddingLeft: 30,
   },
+  title: {
+    margin: 16,
+    marginBottom: 0,
+  },
+  subtitle: {
+    paddingTop: 0,
+    lineHeight: 1,
+    marginBottom: 10,
+  },
 });
 
 function Folders(props: {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  value: any;
+  setValue: React.Dispatch<React.SetStateAction<any>>;
 }) {
   const classes = useStyles();
-
-  const toggleDrawer = () => props.setOpen(!props.open);
+  const [open, setOpen] = useState(false);
 
   return (
+    <>
+      <IconButton edge="start" color="inherit" onClick={() => setOpen(true)}>
+        <FormatListBulletedOutlined />
+      </IconButton>
       <Drawer
         anchor="left"
-        open={props.open}
-        onClose={toggleDrawer}
+        open={open}
+        onClose={() => setOpen(false)}
         className={classes.drawer}
       >
+        <Typography variant="h6" className={classes.title}>
+          Folders
+        </Typography>
         <List className={classes.list}>
-          <ListSubheader>Your folders and documents</ListSubheader>
+          <ListSubheader className={classes.subtitle}>
+            Your folders and documents
+          </ListSubheader>
           <FolderItem
             name="Homework"
             documents={["Biology", "Geography", "Maths", "Physics"]}
@@ -60,6 +80,7 @@ function Folders(props: {
           </ListItem>
         </List>
       </Drawer>
+    </>
   );
 }
 

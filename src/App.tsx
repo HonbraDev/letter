@@ -34,7 +34,7 @@ function App() {
   });
   return (
     <div className="App">
-      <Navbar />
+      <Navbar value={value} setValue={setValue} />
       <Editor value={value} setValue={setValue} />
     </div>
   );
