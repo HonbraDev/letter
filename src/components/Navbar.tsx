@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import QuillToolbar from "./Toolbar";
 import Folders from "./Folders";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  useScrollTrigger,
-} from "@material-ui/core";
-import { FormatListBulletedOutlined } from "@material-ui/icons";
+import { AppBar, Toolbar, useScrollTrigger } from "@material-ui/core";
 import FileMenu from "./FileMenu";
 
 const useStyles = makeStyles({
@@ -29,8 +23,6 @@ function Navbar(props: {
   setValue: React.Dispatch<React.SetStateAction<any>>;
 }) {
   const classes = useStyles();
-  const [foldersOpen, setFoldersOpen] = useState(false);
-  const [fileMenuOpen, setFileMenuOpen] = useState(false);
   const trigger = useScrollTrigger({
     target: window,
     disableHysteresis: true,
