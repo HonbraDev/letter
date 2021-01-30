@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import { useDropzone } from "react-dropzone";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   IconButton,
@@ -46,6 +47,20 @@ function FileMenu(props: {
 }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const onDrop = useCallback(async (acceptedFiles) => {
+    try {
+      const raw = await acceptedFiles[0].text();
+      const document = JSON.parse(raw);
+      if ("ops" in document) {
+        props.setValue(document);
+      } else {
+        throw new TypeError("Invalid File Type");
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, [props]);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
     <>
@@ -56,10 +71,16 @@ function FileMenu(props: {
         <Typography variant="h6" className={classes.title}>
           Open file
         </Typography>
-        <div className={classes.dropArea}>
-          <Typography variant="body1">
-            Drag and drop the file here or click to browse.
-          </Typography>
+        <div className={classes.dropArea} {...getRootProps()}>
+          <input {...getInputProps()} />
+
+          {isDragActive ? (
+            <Typography variant="body1">Drop the file here.</Typography>
+          ) : (
+            <Typography variant="body1">
+              Drag and drop the file here or click to browse.
+            </Typography>
+          )}
         </div>
         <Divider />
         <Typography variant="h6" className={classes.title}>
