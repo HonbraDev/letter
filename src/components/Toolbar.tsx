@@ -48,8 +48,16 @@ function Toolbar() {
           <ToolbarIcon active={false} icon={<StrikethroughSOutlined />} />
         </Grid>
         <Grid item>
+          <ToolbarIcon active={false} icon={<span>x1</span>} />
+          <ToolbarIcon active={false} icon={<span>x2</span>} />
+        </Grid>
+        <Grid item>
+          <ToolbarIcon active={false} icon={<span>h1</span>} />
+          <ToolbarIcon active={false} icon={<span>h2</span>} />
           <ToolbarIcon active={false} icon={<FormatColorTextOutlined />} />
           <ToolbarIcon active={false} icon={<FormatColorFillOutlined />} />
+        </Grid>
+        <Grid item>
           <ToolbarIcon active={false} icon={<FormatQuoteOutlined />} />
           <ToolbarIcon active={false} icon={<CodeOutlined />} />
         </Grid>
