@@ -5,16 +5,27 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Honbra's Letter web editor"
-    />
+    <meta name="description" content="Honbra's Letter web editor" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Letter</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <center
+        style="
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-family: Helvetica, Arial, sans-serif;
+          font-size: 10vmin;
+        "
+      >
+        <h1>Letter</h1>
+        <p>Loading...</p>
+      </center>
+    </div>
   </body>
 </html>

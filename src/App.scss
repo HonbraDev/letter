@@ -12,45 +12,6 @@ $hairline: rgba(29, 29, 31, 0.1);
   box-shadow: rgba(109, 117, 141, 0.2) 0px 12px 48px 0px;
 }
 
-body {
-  margin-top: 64px;
-}
-
-#navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  @include bgBlur();
-  .button {
-    @extend .is-white;
-    margin: 0.1rem;
-  }
-  .left,
-  .right {
-    display: flex;
-    padding: 0.5rem;
-  }
-  .logo {
-    filter: drop-shadow(0 0 12px rgba(109, 117, 141, 0.2));
-  }
-  #toolbar {
-    border: none;
-    display: flex;
-    align-items: center;
-    .ql-picker-options {
-      @extend .card;
-      position: absolute;
-      max-width: none;
-      border: none;
-    }
-  }
-}
-
 #editor {
   width: calc(100% - 40px);
   max-width: 1000px;
@@ -64,38 +25,6 @@ body {
   }
 }
 
-#folders {
-  position: fixed;
-  top: 61px;
-  left: 0;
-  transform: translateX(-100%) translateX(20px);
-  height: calc(100% - 50px);
-  width: 400px;
-  transition: transform 0.3s, border-right 0.3s, opacity 0.3s;
-  padding: 20px;
-  background-color: white;
-  z-index: 2;
-  opacity: 0;
-  .folder {
-    width: 100%;
-    margin: 5px;
-    text-align: left;
-    justify-content: left;
-    &.add {
-      justify-content: center;
-      text-align: center;
-      font-size: 2rem;
-      padding: 0;
-      height: 1.5em;
-    }
-  }
-  &.open {
-    transform: none;
-    opacity: 1;
-    border-right: 1px solid #eeeeee;
-  }
-}
-
 .ql-container {
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+  font-family: "Helvetica", "Arial", sans-serif !important;
 }

@@ -12,12 +12,12 @@
 # To-do
 
 ## UI
-+ [ ] Implement the rest of the buttons
++ [ ] Implement the rest of the buttons (kinda done)
 + + [ ] Subscript
 + + [ ] Superscript
 + + [ ] H1
 + + [ ] H2
-+ [ ] Implement formatting buttons
++ [ ] Implement formatting buttons (halfway done)
 + [ ] Move away from Material Design?
 + [ ] Implement shrinking navbar
 ## Common app stuff

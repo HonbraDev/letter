@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import "./App.scss";
 import Navbar from "./components/Navbar";
 import Editor from "./components/Editor";
+import { createMuiTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: ["Helvetica", "Arial", "sans-serif"].join(","),
+  },
+});
 
 function App() {
   const [value, setValue] = useState({
@@ -29,10 +36,19 @@ function App() {
       },
     ],
   });
+  const [formatting, setFormatting] = useState({});
   return (
     <div className="App">
-      <Navbar value={value} setValue={setValue} />
-      <Editor value={value} setValue={setValue} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Navbar value={value} setValue={setValue} />
+        <Editor
+          value={value}
+          setValue={setValue}
+          formatting={formatting}
+          setFormatting={setFormatting}
+        />
+      </ThemeProvider>
     </div>
   );
 }

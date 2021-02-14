@@ -39,7 +39,11 @@ function Navbar(props: {
         className={classes.appbar}
         elevation={trigger ? 4 : 0}
       >
-        <Toolbar className={classes.toolbar} variant={trigger ? "dense" : "regular"}>
+        <Toolbar
+          className={
+            classes.toolbar
+          } /* variant={trigger ? "dense" : "regular"} */
+        >
           <Folders value={props.value} setValue={props.setValue} />
           <QuillToolbar />
           <FileMenu value={props.value} setValue={props.setValue} />
