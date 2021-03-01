@@ -47,19 +47,22 @@ function FileMenu(props: {
 }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const onDrop = useCallback(async (acceptedFiles) => {
-    try {
-      const raw = await acceptedFiles[0].text();
-      const document = JSON.parse(raw);
-      if ("ops" in document) {
-        props.setValue(document);
-      } else {
-        throw new TypeError("Invalid File Type");
+  const onDrop = useCallback(
+    async (acceptedFiles) => {
+      try {
+        const raw = await acceptedFiles[0].text();
+        const document = JSON.parse(raw);
+        if ("ops" in document) {
+          props.setValue(document);
+        } else {
+          throw new TypeError("Invalid File Type");
+        }
+      } catch (e) {
+        console.error(e);
       }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [props]);
+    },
+    [props]
+  );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
